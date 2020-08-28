@@ -1,19 +1,29 @@
 fun main(args : Array<String>) {
-    println("Digite um número: ")
-    var numb1: Float = try { readLine()!!.toFloat() } catch (e: Exception) { 0F }
-
-    println("Digite outro número: ")
-    var numb2: Float = try { readLine()!!.toFloat() } catch (e: Exception) { 0F }
-
-    //Exibir resultados
-    println("A soma entre $numb1 e $numb2 é: ${sum(numb1, numb2)}")
-    println("A subtração entre $numb1 e $numb2 é: ${sub(numb1, numb2)}")
-    println("A multiplicação entre $numb1 e $numb2 é: ${mult(numb1, numb2)}")
-    println("A divisão entre $numb1 e $numb2 é: ${div(numb1, numb2)}")
+    val calc: Calc = Calc()
+    println("O que deseja fazer?")
+    println("[ 1 ] - Operações básicas.    [ 2 ] - Conversor de temperatura.")
+    println("[ 3 ] - Gerar números aleatórios.    [ 0 ] - Sair.")
+    var mChoice: Int? = null
+    try { mChoice = readLine()!!.toInt() }
+    catch (e: Exception) {
+        print("Error: ${e.message}")
+        System.exit(1)
+    }
+    when(mChoice) {
+        1 -> {
+            calc.BasicOperations()
+            System.exit(0)
+        }
+        2 -> {
+            calc.Converter()
+            System.exit(0)
+        }
+        3 -> {
+            calc.RandomNumb()
+            System.exit(0)
+        }
+        0 -> {
+            System.exit(0)
+        }
+    }
 }
-
-// Funções da calculadora
-fun sum(n1: Float, n2: Float): Float = n1 + n2
-fun sub(n1: Float, n2: Float): Float = n1 - n2
-fun mult(n1: Float, n2: Float): Float = n1 * n2
-fun  div(n1: Float, n2: Float): Float = n1 / n2
